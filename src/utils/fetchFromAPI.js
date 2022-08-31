@@ -12,7 +12,7 @@ const options = {
   },
 };
 
-export const fetchVideosService = async (url) => {
+export const fetchFromAPI = async (url) => {
   try {
     const response = await axios.get(`${BASE_URL}/${url}`, options);
     return response.data;

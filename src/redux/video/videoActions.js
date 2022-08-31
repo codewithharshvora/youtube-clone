@@ -1,4 +1,4 @@
-import { fetchVideosService } from '../../utils/fetchFromAPI';
+import { fetchFromAPI } from '../../utils/fetchFromAPI';
 import {
   FETCH_VIDEOS_FAILURE,
   FETCH_VIDEOS_REQUEST,
@@ -11,7 +11,7 @@ const fetchVideosRequest = () => {
   };
 };
 
-const fetchVideosSuccess = (videos) => {
+export const fetchVideosSuccess = (videos) => {
   return {
     type: FETCH_VIDEOS_SUCCESS,
     payload: videos,
@@ -25,11 +25,17 @@ const fetchVideosFailure = (error) => {
   };
 };
 
-export const fetchVideos = (url) => {
+export const fetchVideos = (category, channelId = null) => {
   return async (dispatch) => {
     dispatch(fetchVideosRequest());
     try {
-      const result = await fetchVideosService(`search?part=snippet&q=${url}`);
+      const url =
+        channelId === null
+          ? `search?part=snippet&q=${category}`
+          : `search?channelId=${channelId}&part=snippet&order=date`;
+
+      const result = await fetchFromAPI(url);
+
       if (result.error) {
         dispatch(fetchVideosFailure(result.error));
       } else {

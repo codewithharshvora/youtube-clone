@@ -1,8 +1,8 @@
 import {
-  FETCH_VIDEOS_FAILURE,
-  FETCH_VIDEOS_REQUEST,
-  FETCH_VIDEOS_SUCCESS,
-} from './videoActionTypes';
+  FETCH_CHANNEL_FAILURE,
+  FETCH_CHANNEL_REQUEST,
+  FETCH_CHANNEL_SUCCESS,
+} from './channelActionTypes';
 
 const initialState = {
   loading: false,
@@ -10,22 +10,22 @@ const initialState = {
   error: '',
 };
 
-export const VideoReducer = (state = initialState, action) => {
+export const ChannelReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case FETCH_VIDEOS_REQUEST:
+    case FETCH_CHANNEL_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case FETCH_VIDEOS_SUCCESS:
+    case FETCH_CHANNEL_SUCCESS:
       return {
         loading: false,
         data: payload,
         error: '',
       };
-    case FETCH_VIDEOS_FAILURE:
+    case FETCH_CHANNEL_FAILURE:
       return {
         loading: false,
         data: [],

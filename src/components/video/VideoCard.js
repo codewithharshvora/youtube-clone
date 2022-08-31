@@ -4,35 +4,31 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const VideoCard = (props) => {
-  const { video } = props;
-  const {
-    id: { videoId },
-    snippet,
-  } = video;
+  const { id, snippet } = props;
 
   return (
     <Card
       sx={{
-        width: { md: '320px', xs: '100%' },
+        width: { xs: '100%', sm: '358px', md: '320px' },
         boxShadow: 'none',
         borderRadius: 0,
       }}
     >
-      <Link to={videoId && `/video/${videoId}`}>
+      <Link to={id && `/video/${id}`}>
         <CardMedia
           image={snippet?.thumbnails?.high?.url}
           alt={snippet?.title}
-          sx={{ width: 358, height: 180 }}
+          sx={{ width: { xs: '100%', sm: '358px', md: '320px' }, height: 180 }}
         />
       </Link>
       <CardContent sx={{ backgroundColor: '#1e1e1e', height: '106px' }}>
-        <Link to={videoId && `/video/${videoId}`}>
+        <Link to={id && `/video/${id}`}>
           <Typography variant="subtitle1" fontWeight="bold" color="white">
             {snippet?.title.slice(0.6)}
           </Typography>
         </Link>
 
-        <Link to={snippet?.channelId && `/video/${snippet?.channelId}`}>
+        <Link to={snippet?.channelId ? `/channel/${snippet?.channelId}` : '/'}>
           <Typography variant="subtitle2" fontWeight="bold" color="gray">
             {snippet?.channelTitle.slice(0.6)}
             <CheckCircle sx={{ fontSize: 12, color: 'gray', ml: '5px' }} />

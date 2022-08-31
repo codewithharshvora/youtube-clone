@@ -1,13 +1,16 @@
 import { CheckCircle } from '@mui/icons-material';
 import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const ChannelCard = (props) => {
-  const { channelDetail } = props;
+  const { channelDetail, classes } = props;
+
   const {
     id: { channelId },
     snippet,
+    statistics,
   } = channelDetail;
 
   return (
@@ -18,10 +21,17 @@ const ChannelCard = (props) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: { md: '320px', xs: '100%' },
+        width: { xs: '100%', md: '320px' },
+        margin: 'auto',
+        height: '326px',
+        ...classes,
       }}
     >
-      <Link to={channelId && `/channel/${channelId}`}>
+      <Link
+        to={
+          channelId ? `/channel/${channelId}` : `/channel/${channelDetail.id}`
+        }
+      >
         <CardContent
           sx={{
             display: 'flex',
@@ -43,12 +53,12 @@ const ChannelCard = (props) => {
             }}
           />
           <Typography variant="h6">
-            {snippet?.channelTitle.slice(0.6)}
+            {snippet?.title.slice(0.6)}
             <CheckCircle sx={{ fontSize: 14, color: 'gray', ml: '5px' }} />
           </Typography>
-          {snippet?.statistics?.subscriberCount && (
-            <Typography>
-              {parseInt(snippet?.statistics?.subscriberCount).toLocaleString()}{' '}
+          {statistics?.subscriberCount && (
+            <Typography variant="subtitle2" fontWeight="bold" color="gray">
+              {parseInt(statistics?.subscriberCount).toLocaleString()}{' '}
               Subscriber
             </Typography>
           )}
