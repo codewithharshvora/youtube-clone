@@ -21,9 +21,19 @@ const VideoCard = (props) => {
           sx={{ width: { xs: '100%', sm: '358px', md: '320px' }, height: 180 }}
         />
       </Link>
-      <CardContent sx={{ backgroundColor: '#1e1e1e', height: '106px' }}>
+      <CardContent
+        sx={{
+          backgroundColor: '#1e1e1e',
+          height: '106px',
+        }}
+      >
         <Link to={id && `/video/${id}`}>
-          <Typography variant="subtitle1" fontWeight="bold" color="white">
+          <Typography
+            minWidth={{ xs: '320px', sm: '358px', md: '320px' }}
+            variant="subtitle1"
+            fontWeight="bold"
+            color="white"
+          >
             {snippet?.title.slice(0.6)}
           </Typography>
         </Link>

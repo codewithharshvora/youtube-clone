@@ -20,12 +20,12 @@ const SearchFeed = () => {
         height: '90vh',
         flex: 2,
       }}
+      px={2}
     >
       <Typography
         variant="h6"
         fontWeight="bold"
         mb={2}
-        pl={2}
         sx={{
           color: 'white',
         }}
