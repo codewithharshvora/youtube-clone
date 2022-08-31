@@ -1,0 +1,11 @@
+.searchBar {
+  border: none;
+  outline: none;
+  width: 21.875rem;
+}
+
+@media screen and (max-width: 600px) {
+  .searchBar {
+    width: 12.5rem;
+  }
+}
