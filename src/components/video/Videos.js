@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import ChannelCard from './ChannelCard';
 import VideoCard from './VideoCard';
 
-const Videos = ({ direction }) => {
+const Videos = ({ direction, justifyContent }) => {
   const videos = useSelector((state) => state.video);
   const { loading, data, error } = videos;
 
@@ -16,7 +16,9 @@ const Videos = ({ direction }) => {
     <Stack
       direction={direction || 'row'}
       flexWrap="wrap"
-      justifyContent={{ xs: 'center', sm: 'center', md: 'start' }}
+      justifyContent={
+        justifyContent || { xs: 'center', sm: 'center', md: 'start' }
+      }
       gap={2}
     >
       {data.map((item, index) => (
